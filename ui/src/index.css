@@ -294,13 +294,15 @@ a {
 }
 
 .dashboard-add-pill,
-.webcam-prompt-dashboard {
+.webcam-prompt-dashboard,
+.webcam-meeting-invite {
   padding: 1.5rem;
   border-radius: 4px;
   border: 1px solid rgba(0, 0, 0, 0.15);
 }
 
-.webcam-prompt-dashboard {
+.webcam-prompt-dashboard,
+.webcam-meeting-invite {
   margin-top: 2rem;
 }
 
@@ -343,7 +345,7 @@ a {
   font-size: 0.8rem;
 }
 
-.picture-wrapper {
+.pills-sidebar {
   display: flex;
   justify-content: center;
   align-items: center;

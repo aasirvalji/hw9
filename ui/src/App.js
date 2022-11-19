@@ -7,7 +7,7 @@ import DoctorLogin from './pages/DoctorLogin';
 import DoctorRegister from './pages/DoctorRegister';
 import Pills from './pages/Pills';
 import Order from './pages/Order';
-import Appointment from './pages/DoctorRegister';
+import Appointment from './pages/Appointment';
 import Navbar from './components/Navbar';
 import Webcam from './pages/Webcam';
 import axios from 'axios';
@@ -61,6 +61,7 @@ function App() {
 
         <Route path='/pills' element={<Pills />} />
         <Route path='/order' element={<Order />} />
+
         <Route path='/appointment' element={<Appointment />} />
       </Routes>
     </>
