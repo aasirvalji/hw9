@@ -5,9 +5,9 @@ const puppeteer = require('puppeteer');
  * @param {String} textInput 
  */
 const getAmazonResults = async textInput => {
-    const browser = await puppeteer.launch({ headless: false });
+    const browser = await puppeteer.launch();
     const page = await browser.newPage();
-    page.on('console', msg => console.log(msg.text()));
+    // page.on('console', msg => console.log(msg.text())); // uncomment for NodeJS debugging
 
     await page.goto("https://www.amazon.ca");
 
@@ -37,7 +37,7 @@ const getAmazonResults = async textInput => {
             }) // get href element
     });
     await browser.close();
-    console.log(links.slice(0, 3));
+    return links.slice(0, 3);
 };
 
 module.exports = {
