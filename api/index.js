@@ -28,6 +28,7 @@ app.use('/api/amazon-search', require(`${apiPrefix}/amazon-search.js`))
 app.use('/api/appointment', require(`${apiPrefix}/appointments.js`));
 app.use('/api/doctors', require(`${apiPrefix}/doctors.js`));
 app.use('/api/patients', require(`${apiPrefix}/patients.js`));
+app.use('/api/notify', require(`${apiPrefix}/notify.js`));
 
 app.listen(PORT, () =>
   console.log(`Server running in ${nodeEnv} on port ${PORT}`.yellow.bold)
