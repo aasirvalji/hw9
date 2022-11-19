@@ -6,6 +6,7 @@ import { UserContext } from '../UserContext';
 import { AlanContext } from '../AlanContext';
 
 const { BASE_URL } = CONSTS;
+var userType = window.location.pathname.split('-')[0].substring(1);
 
 function PatientRegister() {
   const { checkAlanVisibility, ready } = useContext(AlanContext);
@@ -30,13 +31,15 @@ function PatientRegister() {
     const res = await axios.post(`${BASE_URL}/api/auth/register`, {
       username,
       password,
+      type: userType,
     });
-    localStorage.setItem('token', res.data.token);
 
-    if (getAuth()) {
-      //if logged in
-      return <Navigate to='/home' />;
-    }
+    localStorage.setItem('token', res.data.token);
+  }
+
+  if (getAuth()) {
+    //if logged in
+    return <Navigate to='/home' />;
   }
 
   return (

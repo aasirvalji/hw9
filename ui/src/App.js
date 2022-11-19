@@ -5,6 +5,9 @@ import PatientLogin from './pages/PatientLogin';
 import PatientRegister from './pages/PatientRegister';
 import DoctorLogin from './pages/DoctorLogin';
 import DoctorRegister from './pages/DoctorRegister';
+import Pills from './pages/Pills';
+import Order from './pages/Order';
+import Appointment from './pages/DoctorRegister';
 import Navbar from './components/Navbar';
 import axios from 'axios';
 import setAuthToken from './utils/setAuthToken';
@@ -53,6 +56,10 @@ function App() {
 
         <Route path='/doctor-login' element={<DoctorLogin />} />
         <Route path='/doctor-register' element={<DoctorRegister />} />
+
+        <Route path='/pills' element={<Pills />} />
+        <Route path='/order' element={<Order />} />
+        <Route path='/appointment' element={<Appointment />} />
       </Routes>
     </>
   );

@@ -1,20 +1,23 @@
 import { useEffect, useRef, createContext, useState } from 'react';
 import alanBtn from '@alan-ai/alan-sdk-web';
 import invalidAlanPaths from './utils/invalidAlanPaths.json';
+import { useNavigate } from 'react-router-dom';
+import validAppPaths from './utils/validAppPaths.json';
 
 const AlanContext = createContext();
 
 function AlanProvider({ children }) {
+  const navigate = useNavigate();
   const alanBtnRef = useRef({}).current;
   const [connection, setConnection] = useState('temp');
   const [ready, setReady] = useState(false);
 
   useEffect(() => {
     alanBtnRef.btnInstance = alanBtn({
-      key: 'd89ef2cd996428f501751aa027a77ebc2e956eca572e1d8b807a3e2338fdd0dc/stage',
+      key: '01795eea06de166d09dcc410696ad0a52e956eca572e1d8b807a3e2338fdd0dc/stage',
       onCommand: (commandData) => {
-        console.log(Object.keys(commandData));
-        if (commandData.command === 'go:back') {
+        if (commandData.command === 'navigation') {
+          navigate(`/${commandData.route}`, { replace: true });
           // Call the client code that will react to the received command
         }
       },

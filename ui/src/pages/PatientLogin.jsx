@@ -6,6 +6,7 @@ import CONSTS from '../utils/consts.json';
 import axios from 'axios';
 
 const { BASE_URL } = CONSTS;
+var userType = window.location.pathname.split('-')[0].substring(1);
 
 function PatientLogin() {
   const { checkAlanVisibility, ready } = useContext(AlanContext);
@@ -23,13 +24,10 @@ function PatientLogin() {
       const res = await axios.post(`${BASE_URL}/api/auth/login`, {
         username,
         password,
+        type: userType,
       });
 
       localStorage.setItem('token', res.data.token);
-      localStorage.setItem(
-        'type',
-        window.location.pathname.split('-')[0].substring(1)
-      );
 
       setLoading(true);
       const { data } = await axios.get(`${BASE_URL}/api/auth`, {
