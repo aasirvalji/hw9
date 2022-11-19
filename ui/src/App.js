@@ -9,6 +9,7 @@ import Pills from './pages/Pills';
 import Order from './pages/Order';
 import Appointment from './pages/DoctorRegister';
 import Navbar from './components/Navbar';
+import Webcam from './pages/Webcam';
 import axios from 'axios';
 import setAuthToken from './utils/setAuthToken';
 import CONSTS from './utils/consts.json';
@@ -50,6 +51,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/home' element={<Home />} />
+        <Route path='/webcam' element={<Webcam />} />
 
         <Route path='/patient-login' element={<PatientLogin />} />
         <Route path='/patient-register' element={<PatientRegister />} />

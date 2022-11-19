@@ -29,6 +29,8 @@ a {
 
 .button {
   text-decoration: none;
+  color: white;
+  cursor: pointer;
   padding: 10px 20px;
   height: 100%;
   width: 100%;
@@ -144,10 +146,6 @@ a {
 }
 /* end navbar */
 
-/* start landing */
-
-/* end landing */
-
 /* start login and register */
 .register-container,
 .login-container {
@@ -234,6 +232,7 @@ a {
   margin: 3rem auto;
   display: flex;
   justify-content: space-between;
+  align-items: flex-start;
 }
 
 .dashboard-pills {
@@ -253,12 +252,11 @@ a {
 }
 
 .dashboard-pill-item-image {
-  width: 100px;
+  height: 150px;
 }
 
 .dashboard-pill-item-text {
   font-size: 0.9rem;
-  padding-left: 1rem;
 }
 
 .dashboard-pill-item-date {
@@ -271,11 +269,39 @@ a {
   display: flex;
 }
 
-.dashboard-add-pill {
+.dashboard-pill-item-description {
+  display: flex;
+  flex-direction: column;
+  padding-left: 1rem;
+}
+
+.dashboard-pill-item-inner {
+  flex: 0.75;
+}
+
+.dashboard-pill-item-buttons {
+  display: flex;
+  flex: 0.25;
+}
+
+.dashboard-pill-item-buttons button {
+  width: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  border-radius: 50%;
+}
+
+.dashboard-add-pill,
+.webcam-prompt-dashboard {
   padding: 1.5rem;
-  height: 100%;
   border-radius: 4px;
   border: 1px solid rgba(0, 0, 0, 0.15);
+}
+
+.webcam-prompt-dashboard {
+  margin-top: 2rem;
 }
 
 .dashboard-add-pill input[type='file'] {
@@ -284,7 +310,7 @@ a {
 
 .custom-file-upload {
   font-size: 0.7rem;
-
+  cursor: pointer;
   outline: none;
   border: none;
   background-image: linear-gradient(90deg, #f381da, #a5d4d1);
@@ -303,6 +329,7 @@ a {
 
 .dashboard-add-pill button {
   margin-top: 1rem;
+  height: 40px;
 }
 
 .upload-name-container {
@@ -315,4 +342,67 @@ a {
 .upload-name-container p {
   font-size: 0.8rem;
 }
+
+.picture-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
 /* end pills */
+
+/* start webcam */
+.webcam-wrapper {
+  width: 50%;
+  margin: auto;
+}
+
+#webcam {
+  margin: 2rem auto;
+  width: 100%;
+  box-shadow: 0 19px 38px rgba(0, 0, 0, 0.1), 0 15px 12px rgba(0, 0, 0, 0.055);
+}
+/* end webcam */
+
+/* start modal */
+/* The Modal (background) */
+.modal {
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  width: 80%; /* Could be more or less, depending on screen size */
+  border-radius: 5px;
+  box-shadow: 0 19px 38px rgba(0, 0, 0, 0.1), 0 15px 12px rgba(0, 0, 0, 0.055);
+}
+
+/* The Close Button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+/* end modal */

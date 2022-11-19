@@ -3,6 +3,7 @@ import CONSTS from '../utils/consts.json';
 import axios from 'axios';
 import Loader from '../components/Loader';
 import Upload from '../components/Upload';
+import { Link } from 'react-router-dom';
 import { AlanContext } from '../AlanContext';
 
 const BASE_URL = CONSTS.BASE_URL;
@@ -24,13 +25,17 @@ function Pills() {
     getPills();
   }, []);
 
+  function hello() {
+    console.log('hello from parent function');
+  }
+
   return (
     <div className='dashboard-container'>
       <div className='dashboard-pills'>
         {loading || !Array.isArray(pills) ? (
           <Loader />
         ) : (
-          pills.reverse().map((pill, idx) => {
+          pills.map((pill, idx) => {
             return (
               <div
                 className={
@@ -41,7 +46,6 @@ function Pills() {
                 key={idx}
               >
                 <div className='dashboard-pill-item-header'>
-                  <p className='dashboard-pill-item-title'>{pill.title}</p>
                   <p className='dashboard-pill-item-date'>
                     Uploaded: {new Date(pill.created).toLocaleString()}
                   </p>
@@ -54,23 +58,45 @@ function Pills() {
                       alt='pill'
                     />
                   </a>
-                  {pill.longtext && (
-                    <p className='dashboard-pill-item-text'>{pill.longtext}</p>
-                  )}
-                  <button
-                    onClick={() =>
-                      alanBtnRef.btnInstance.playText('big boy daddy')
-                    }
-                  >
-                    test
-                  </button>
+                  <div className='dashboard-pill-item-description'>
+                    <div className='dashboard-pill-item-inner'>
+                      <p>Title: keywords</p>
+                      {pill.longtext && (
+                        <p className='dashboard-pill-item-text'>
+                          {pill.longtext.substring(0, 250)}
+                        </p>
+                      )}
+                    </div>
+
+                    <div className='dashboard-pill-item-buttons'>
+                      <button
+                        className='button'
+                        onClick={() =>
+                          alanBtnRef.btnInstance.playText('big boy daddy')
+                        }
+                      >
+                        <i class='fa-solid fa-play'></i>
+                      </button>
+                    </div>
+                  </div>
                 </div>
               </div>
             );
           })
         )}
       </div>
-      <Upload />
+      <div className='picture-wrapper'>
+        <Upload setPills={setPills} hello={hello} />
+        <div className='webcam-prompt-dashboard'>
+          <p className='gradient-text'>Dont have any pictures yet?</p>
+          <br />
+          <Link to='/webcam'>
+            <button className='webcam-prompt-button button'>
+              <i class='fa-solid fa-camera'></i>
+            </button>
+          </Link>
+        </div>
+      </div>
     </div>
   );
 }
