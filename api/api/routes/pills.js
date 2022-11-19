@@ -10,8 +10,7 @@ const cohere = require('cohere-ai');
 cohere.init(process.env.COHERE_API_KEY);
 
 router.get('/', auth, async (req, res) => {
-  console.log(req.user);
-  const pills = await Pill.find({ user: req.user.id });
+  const pills = await Pill.find({ user: req.user.id }).sort('-created');
 
   return res.status(200).json({ pills: pills });
 });
@@ -27,7 +26,7 @@ router.post('/create', auth, async (req, res) => {
   return res.status(200).json({ id: pill.id });
 });
 
-router.get('/create/:id', auth, async (req, res) => {
+router.post('/create/:id', auth, async (req, res) => {
   var pill = await Pill.findById(req.params.id);
 
   if (!pill) return res.status(404).json({ message: 'Pill not found' });
@@ -49,9 +48,10 @@ router.get('/create/:id', auth, async (req, res) => {
   });
   pill.tokens = cohereRes.body.token_strings;
 
-  await pill.save();
+  pill = await pill.save();
+  console.log('from server: ' + pill);
 
-  return res.status(200).json({ id: pill.id });
+  return res.status(200).json(pill);
 });
 
 module.exports = router;
