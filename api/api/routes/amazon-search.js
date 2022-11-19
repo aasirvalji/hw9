@@ -16,7 +16,6 @@ router.get('/', auth, async (req, res) => {
         const message = `\n\n${user.fullName} has requested  ${req.query.q}: \n\n${data.join("\n\n")}`;
 
         notifyRelative(message);
-        console.log(message);
 
         return res.status(200).json(data);
     } catch (error) {
