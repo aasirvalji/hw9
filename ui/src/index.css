@@ -1,0 +1,213 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700&display=swap');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Kumbh Sans', sans-serif;
+  scroll-behavior: smooth;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+/* start general */
+.button {
+  text-decoration: none;
+  padding: 10px 20px;
+  height: 100%;
+  width: 100%;
+  border: none;
+  outline: none;
+  border-radius: 4px;
+  background: #833ab4;
+  background: -webkit-linear-gradient(to right, #fcb045, #fd1d1d, #833ab4);
+  background: linear-gradient(to right, #fcb045, #fd1d1d, #833ab4);
+  transition: all 0.3s ease;
+}
+
+.home-container,
+.about-container,
+.register-container,
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+}
+
+.gradient-text {
+  color: red;
+}
+/* gradient text for modern browsers */
+@supports (background-clip: text) {
+  .gradient-text {
+    background-image: linear-gradient(180deg, #ff1493, #ff8c00);
+    background-clip: text;
+    color: transparent;
+  }
+}
+/* end general */
+
+/* start navbar */
+.navbar {
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1rem;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  background: #131313;
+}
+
+.navbar__container {
+  display: flex;
+  justify-content: space-between;
+  height: 80px;
+  z-index: 1;
+  width: 100%;
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 0 50px;
+}
+
+#navbar__logo {
+  background-color: #ff8177;
+  background-image: linear-gradient(to top, #ff0844 0%, #ffb199 100%);
+  background-size: 100%;
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -moz-text-fill-color: transparent;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 2rem;
+}
+
+.navbar__menu {
+  display: flex;
+  align-items: center;
+  list-style: none;
+}
+
+.navbar__item {
+  height: 80px;
+}
+
+.navbar__links {
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100px;
+  text-decoration: none;
+  height: 100%;
+  transition: all 0.3s ease;
+}
+
+.navbar__btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 1rem;
+  width: 100%;
+}
+
+#signup {
+  text-decoration: none;
+  outline: none;
+  color: white;
+}
+
+/* end navbar */
+
+/* start home */
+
+/* end home */
+
+/* start login and register */
+.register-container,
+.login-container {
+  height: calc(100vh - 50px);
+}
+
+.register-container,
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.register-content-container,
+.login-content-container {
+  min-height: 300px;
+  padding: 2rem;
+  border-radius: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+}
+
+.register-text,
+.login-text {
+  font-size: 1.5rem;
+}
+
+.register-subtext,
+.login-subtext {
+  font-size: 0.8rem;
+}
+
+.register-subtext a,
+.login-subtext a {
+  background-image: linear-gradient(90deg, #ff1493, #ff8c00);
+  background-clip: text;
+  color: transparent;
+}
+
+.register-input-content,
+.login-input-content {
+  margin: 0.5rem auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.register-input-username,
+.register-input-password,
+.register-input-confirm-password,
+.login-input-username,
+.login-input-password,
+.login-input-confirm-password {
+  font-size: 0.7rem;
+  margin: 0.25rem 0rem;
+}
+
+.register-input-content input,
+.login-input-content input {
+  border: 1px solid rgba(0, 0, 0, 0.25);
+  border-radius: 3px;
+  outline: none;
+  padding: 0.33rem;
+}
+
+.register-button,
+.login-button {
+  outline: none;
+  border: none;
+  background-image: linear-gradient(90deg, #ff1493, #ff8c00);
+  color: white;
+  border-radius: 3px;
+  padding: 0.2rem;
+  margin: 0.5rem 0rem 0.25rem 0rem;
+}
+/* end login and register */
