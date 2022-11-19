@@ -7,7 +7,6 @@ router.get('/', auth, async (req, res) => {
 
     try {
         const data = await getAmazonResults(req.query.q);
-        console.log(data);
         return res.status(200).json(data);
     } catch (error) {
         console.error(error.message);
