@@ -3,7 +3,8 @@ const bcrypt = require('bcryptjs');
 const auth = require('../../utils/auth');
 const jwt = require('jsonwebtoken');
 const path = require('path');
-const User = require('../../db/models/User');
+const Doctor = require('../../db/models/Doctor');
+const Patient = require('../../db/models/Patient');
 
 // get user
 router.get('/', auth, async (req, res) => {
@@ -19,6 +20,7 @@ router.get('/', auth, async (req, res) => {
 // login
 router.post('/login', async (req, res) => {
   try {
+    // check both
     const { username, password } = req.body;
 
     let user = await User.findOne({ username });
@@ -57,6 +59,7 @@ router.post('/login', async (req, res) => {
 // register
 router.post('/register', async (req, res) => {
   try {
+    // check both
     const { username, password } = req.body;
     console.log('From server: ' + username, password);
     if (!username || !password)
