@@ -1,9 +1,6 @@
 const router = require('express').Router();
 const auth = require('../../utils/auth');
 const Doctor = require('../../db/models/Doctor');
-const cohere = require('cohere-ai');
-
-cohere.init(process.env.COHERE_API_KEY);
 
 router.get('/', auth, async (req, res) => {
     const doctors = await Doctor.find({});
