@@ -9,4 +9,6 @@ app.use(express.json());
 
 app.get("/", (req, res) => res.status(200).json({ message: "Hello world!" }));
 
+app.use('/api/appointments', require('./appointments'));
+
 app.listen(process.env.PORT, () => console.log(`Listening on port ${process.env.PORT}...`));
