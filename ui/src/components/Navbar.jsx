@@ -1,6 +1,8 @@
 import React, { useContext, useState } from 'react';
 import { useEffect } from 'react';
 import { UserContext } from '../UserContext';
+import { Link } from 'react-router-dom';
+import doctor from '../assets/doctor.png';
 
 function Navbar() {
   const [auth, setAuth] = useState(false);
@@ -13,9 +15,9 @@ function Navbar() {
   return (
     <nav class='navbar'>
       <div class='navbar__container'>
-        <a href='#home' id='navbar__logo'>
-          Doctor
-        </a>
+        <Link to='home' id='navbar__logo'>
+          <img src={doctor} alt='doctor' />
+        </Link>
         <div class='navbar__toggle' id='mobile-menu'>
           <span class='bar'></span> <span class='bar'></span>
           <span class='bar'></span>
@@ -24,62 +26,35 @@ function Navbar() {
         {!auth ? (
           <ul class='navbar__menu'>
             <li class='navbar__item'>
-              <a href='#about' class='navbar__links' id='about-page'>
-                About
-              </a>
-            </li>
-            <li class='navbar__item'>
-              <a href='#services' class='navbar__links' id='services-page'>
-                Services
-              </a>
+              <Link to='/patient-register' className='navbar__links'>
+                Register
+              </Link>
             </li>
             <li class='navbar__btn'>
-              <a href='#sign-up' class='button' id='signup'>
-                Sign Up
-              </a>
+              <Link to='/patient-login' className='button'>
+                Login
+              </Link>
             </li>
           </ul>
         ) : (
           <ul class='navbar__menu'>
             <li class='navbar__item'>
-              <a href='#home' class='navbar__links' id='home-page'>
-                Home
-              </a>
+              <Link to='/pills' className='navbar__links'>
+                Pills
+              </Link>
             </li>
             <li class='navbar__item'>
-              <a href='#about' class='navbar__links' id='about-page'>
-                About
-              </a>
+              <Link to='/order' className='navbar__links'>
+                Order
+              </Link>
             </li>
             <li class='navbar__item'>
-              <a href='#services' class='navbar__links' id='services-page'>
-                Services
-              </a>
+              <Link to='/appointment' className='navbar__links'>
+                Appointment
+              </Link>
             </li>
           </ul>
         )}
-        {/* <ul class='navbar__menu'>
-          <li class='navbar__item'>
-            <a href='#home' class='navbar__links' id='home-page'>
-              Home
-            </a>
-          </li>
-          <li class='navbar__item'>
-            <a href='#about' class='navbar__links' id='about-page'>
-              About
-            </a>
-          </li>
-          <li class='navbar__item'>
-            <a href='#services' class='navbar__links' id='services-page'>
-              Services
-            </a>
-          </li>
-          <li class='navbar__btn'>
-            <a href='#sign-up' class='button' id='signup'>
-              Sign Up
-            </a>
-          </li>
-        </ul> */}
       </div>
     </nav>
   );

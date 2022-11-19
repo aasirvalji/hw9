@@ -19,6 +19,10 @@ code {
 }
 
 /* start general */
+a {
+  color: white;
+}
+
 .button {
   text-decoration: none;
   padding: 10px 20px;
@@ -95,6 +99,11 @@ code {
   font-size: 2rem;
 }
 
+.navbar__container img {
+  width: 40px;
+  border-radius: 5px;
+}
+
 .navbar__menu {
   display: flex;
   align-items: center;
@@ -129,17 +138,19 @@ code {
   outline: none;
   color: white;
 }
-
 /* end navbar */
 
-/* start home */
+/* start landing */
 
-/* end home */
+/* end landing */
 
 /* start login and register */
 .register-container,
 .login-container {
   height: calc(100vh - 50px);
+
+  background: #000000;
+  background: linear-gradient(to right, #161616, #000000);
 }
 
 .register-container,
@@ -153,8 +164,9 @@ code {
 .login-content-container {
   min-height: 300px;
   padding: 2rem;
-  border-radius: 10px;
+  border-radius: 2px;
   border: 1px solid rgba(0, 0, 0, 0.15);
+  background-color: white;
 }
 
 .register-text,
