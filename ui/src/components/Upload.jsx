@@ -11,17 +11,18 @@ function Upload() {
 
   async function handleUpload(e) {
     setLoading(true);
-    var r = await axios.post(`${baseUrl}/api/pills/create`, {});
-    var title = r.data.title;
-
     let file = inputRef.current.files[0];
+    if (!file) {
+      alert('Please upload a file.');
+      return setLoading(false);
+    }
+
     let fileParts = inputRef.current.files[0].name.split('.');
+    let fileName = fileParts[0];
     let fileType = fileParts[1];
 
-    if (!file || !fileParts) return alert('Please upload a file.');
-
     var res = await axios.post(`${baseUrl}/api/aws`, {
-      fileName: title,
+      fileName,
       fileType,
     });
 
@@ -30,6 +31,10 @@ function Upload() {
     // Get signed request and URL from backend
     var signedRequest = returnData.signedRequest;
     var url = returnData.url;
+
+    res = await axios.post(`${baseUrl}/api/pills/create`, { url });
+    var id = res.data.id;
+
     console.log('Recieved a signed request ' + signedRequest);
     console.log('Recieved a write URL @' + url);
 
@@ -43,13 +48,14 @@ function Upload() {
     delete axios.defaults.headers.authorization;
     axios
       .put(signedRequest, file, options)
-      .then((result) => {
+      .then(async (result) => {
         console.log('Success: ' + result);
         axios.defaults.headers.authorization = `Bearer ${localStorage.getItem(
           'token'
         )}`;
 
         // set completion request to db here
+        res = await axios.get(`${baseUrl}/api/pills/create/${id}`);
 
         setLoading(false);
       })
@@ -59,8 +65,8 @@ function Upload() {
   }
 
   return (
-    <div className='dashboard-add-receipt'>
-      <p className='gradient-text'>Wanna add a new receipt?</p>
+    <div className='dashboard-add-pill'>
+      <p className='gradient-text'>Wanna order new medication?</p>
       {/* <div className='upload-name-container'>
         <p>Name: </p>
         <input
