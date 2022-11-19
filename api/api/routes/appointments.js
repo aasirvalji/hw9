@@ -88,12 +88,12 @@ const getUser = async req => {
     let user;
     if (req.user.type === "doctor") {
         user = await Doctor.findById({
-            id: req.user.id
+            _id: req.user.id
         });
     }
     else {
         user = await Patient.findById({
-            id: req.user.id
+            _id: req.user.id
         });
     }
     return user;
