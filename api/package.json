@@ -20,6 +20,7 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.7.2",
     "morgan": "^1.10.0",
-    "node-tesseract-ocr": "^2.2.1"
+    "node-tesseract-ocr": "^2.2.1",
+    "socket.io": "^4.5.3"
   }
 }
