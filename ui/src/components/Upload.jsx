@@ -5,7 +5,7 @@ import Loader from './Loader';
 const bucketRoot = 'https://file-cli-9999.s3.amazonaws.com';
 const baseUrl = 'http://localhost:5000';
 
-function Upload() {
+function Upload({ setPills, pills }) {
   const inputRef = useRef();
   const [loading, setLoading] = useState(false);
 
@@ -55,12 +55,12 @@ function Upload() {
         )}`;
 
         // set completion request to db here
-        res = await axios.get(`${baseUrl}/api/pills/create/${id}`);
-
+        res = await axios.post(`${baseUrl}/api/pills/create/${id}`);
+        setPills((prev) => [res.data, ...prev]);
         setLoading(false);
       })
-      .catch((error) => {
-        alert('ERROR ' + JSON.stringify(error));
+      .catch((err) => {
+        alert(err);
       });
   }
 
@@ -89,7 +89,7 @@ function Upload() {
       {loading ? (
         <Loader />
       ) : (
-        <button className='upload-button' onClick={handleUpload}>
+        <button className='upload-button button' onClick={handleUpload}>
           Upload
         </button>
       )}
