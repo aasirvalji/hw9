@@ -11,12 +11,24 @@ const Appointment = new mongoose.Schema({
     },
     date: {
         type: Date,
-        required: true
     },
     location: {
-        type: String,
-        required: false
-    }
+        // GeoJSON Point
+        type: {
+            type: String,
+            enum: ['Point'],
+        },
+        coordinates: {
+            type: [Number],
+            index: '2dsphere',
+        },
+        formattedAddress: String,
+        street: String,
+        city: String,
+        state: String,
+        zipcode: String,
+        country: String,
+    },
 })
 
 module.exports = mongoose.model("Appointment", Appointment);
