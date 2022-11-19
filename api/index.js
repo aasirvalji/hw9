@@ -22,6 +22,8 @@ if (nodeEnv === 'development') {
 // routes
 const apiPrefix = './api/routes';
 app.use('/api/auth', require(`${apiPrefix}/auth.js`));
+app.use('/api/pills', require(`${apiPrefix}/pills.js`));
+app.use('/api/aws', require(`${apiPrefix}/aws.js`));
 
 app.listen(PORT, () =>
   console.log(`Server running in ${nodeEnv} on port ${PORT}`.yellow.bold)

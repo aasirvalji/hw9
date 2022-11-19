@@ -1,11 +1,13 @@
 const fs = require('fs');
 const mongoose = require('mongoose');
 require('dotenv').config({ path: `${__dirname}/../.env` });
-const Pateint = require('../models/Pateint');
-const Pill = require('../models/Pill');
+const Patient = require('../db/models/Patient');
+const Pill = require('../db/models/Pill');
 require('colors');
 
-const pills = JSON.parse(fs.readFileSync(`${__dirname}/pills.json`, 'utf-8'));
+const pills = JSON.parse(
+  fs.readFileSync(`${__dirname}/data/pills.json`, 'utf-8')
+);
 
 var arg = process.argv[2];
 

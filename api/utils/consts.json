@@ -1,0 +1,5 @@
+{
+  "DEV_URL": "http://localhost:5000",
+  "PROD_URL": "http://localhost:5000",
+  "AWS_URL": "https://file-cli-9999.s3.us-west-2.amazonaws.com/images"
+}
