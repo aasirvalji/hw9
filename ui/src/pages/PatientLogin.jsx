@@ -26,6 +26,10 @@ function PatientLogin() {
       });
 
       localStorage.setItem('token', res.data.token);
+      localStorage.setItem(
+        'type',
+        window.location.pathname.split('-')[0].substring(1)
+      );
 
       setLoading(true);
       const { data } = await axios.get(`${BASE_URL}/api/auth`, {
