@@ -9,7 +9,6 @@ const { notifyRelative } = require("../../twilio");
 router.get('/', auth, async (req, res) => {
     // api/?q=mysearchquery
     const user = await getUser(req);
-    console.log(user);
 
     try {
         const data = await getAmazonResults(req.query.q);
