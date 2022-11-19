@@ -2,9 +2,9 @@ const express = require("express");
 const router = express.Router();
 
 const auth = require("./auth");
-const Appointment = require("./db/appointment");
-const Patient = require("./db/patient");
-const Doctor = require("./db/doctor");
+const Appointment = require("../../db/models/Appointment");
+const Patient = require("../../db/models/Patient");
+const Doctor = require("../../db/models/Doctor");
 
 // get all appointments
 router.get("/", auth, async (req, res) => {
