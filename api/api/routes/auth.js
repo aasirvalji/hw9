@@ -9,7 +9,14 @@ const Patient = require('../../db/models/Patient');
 // get user
 router.get('/', auth, async (req, res) => {
   try {
-    const user = await User.findById(req.user.id).select('-password');
+    var user;
+
+    if (req.user.type === 'patient') {
+      user = await Patient.findById(req.user.id).select('-password');
+    } else if (req.user.type === 'doctor') {
+      user = await Doctor.findById(req.user.id).select('-password');
+    } else return res.status(404).json({ msg: 'User not found.' });
+
     return res.status(200).json(user._id);
   } catch (err) {
     console.log(err);
@@ -20,10 +27,14 @@ router.get('/', auth, async (req, res) => {
 // login
 router.post('/login', async (req, res) => {
   try {
-    // check both
-    const { username, password } = req.body;
+    const { username, password, type } = req.body;
 
-    let user = await User.findOne({ username });
+    let user;
+    if (type === 'patient') {
+      user = await Patient.findOne({ username });
+    } else if (type === 'doctor') {
+      user = await Doctor.findOne({ username });
+    }
 
     if (!user) {
       return res.status(400).json({ msg: 'Invalid credentials' });
@@ -38,6 +49,7 @@ router.post('/login', async (req, res) => {
     const payload = {
       user: {
         id: user.id,
+        type,
       },
     };
 
@@ -59,23 +71,33 @@ router.post('/login', async (req, res) => {
 // register
 router.post('/register', async (req, res) => {
   try {
-    // check both
-    const { username, password } = req.body;
-    console.log('From server: ' + username, password);
+    const { username, password, type } = req.body;
+
     if (!username || !password)
       return res
         .status(422)
         .json({ msg: 'Username and password cannot be empty' });
 
-    let user = await User.findOne({ username });
+    let user;
+    if (type === 'patient') {
+      user = await Patient.findOne({ username });
+    } else if (type === 'doctor') {
+      user = await Doctor.findOne({ username });
+    }
 
     if (user) {
       return res.status(403).json({ msg: 'User already exists' });
     }
 
-    user = new User({
-      username,
-    });
+    if (type === 'patient') {
+      user = new Patient({
+        username,
+      });
+    } else if (type === 'doctor') {
+      user = new Doctor({
+        username,
+      });
+    }
 
     const salt = await bcrypt.genSalt(10); // generate salt to help randomize the hash
     user.password = await bcrypt.hash(password, salt); // hash has the ciphertext, cost and random salt used
@@ -84,6 +106,7 @@ router.post('/register', async (req, res) => {
     const payload = {
       user: {
         id: user.id,
+        type,
       },
     };
 
