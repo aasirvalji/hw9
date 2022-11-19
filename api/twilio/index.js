@@ -8,7 +8,7 @@ const client = require('twilio')(accountSid, authToken);
 const notifyRelative = message => {
     client.messages
         .create({ body: message, from: '+18655688025', to: '+15199651728' })
-        .then(message => console.log(message.sid));
+        // .then(message => console.log(message.sid));
 };
 
 module.exports = { notifyRelative };
