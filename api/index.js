@@ -1,12 +1,32 @@
-const express = require("express");
-const path = require("path");
-
-require("dotenv").config({ path: path.join(__dirname, ".env") });
-
+const express = require('express');
 const app = express();
+const PORT = process.env.PORT || 5000;
+const cors = require('cors');
+const morgan = require('morgan');
+const connectDb = require('./db/index.js');
+require('dotenv').config();
+const nodeEnv = !process.env.NODE_ENV ? 'development' : process.env.NODE_ENV;
 
+// init
+connectDb();
+
+// middleware
 app.use(express.json());
+app.use(cors());
 
-app.get("/", (req, res) => res.status(200).json({ message: "Hello world!" }));
+// logger
+if (nodeEnv === 'development') {
+  app.use(morgan('dev'));
+}
 
-app.listen(process.env.PORT, () => console.log(`Listening on port ${process.env.PORT}...`));
+// routes
+const apiPrefix = './api/routes';
+app.use('/api/auth', require(`${apiPrefix}/auth.js`));
+
+app.listen(PORT, () =>
+  console.log(`Server running in ${nodeEnv} on port ${PORT}`.yellow.bold)
+);
+
+process.on('unhandledRejection', (err, promise) => {
+  console.log(`Unhandler rejection error: ${err.message}`.red);
+});
