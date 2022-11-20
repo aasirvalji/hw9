@@ -44,7 +44,7 @@ function Navbar() {
               </Link>
             </li>
             <li class='navbar__item'>
-              <Link to='/Notifications' className='navbar__links'>
+              <Link to='/notifications' className='navbar__links'>
                 Notifications
               </Link>
             </li>
