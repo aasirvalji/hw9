@@ -56,6 +56,7 @@ function Pills() {
   return (
     <div className='dashboard-container'>
       <div className='dashboard-pills'>
+        {Array.isArray(pills) && <h1>Past medications: </h1>}
         {loading || !Array.isArray(pills) ? (
           <Loader />
         ) : (
@@ -84,7 +85,7 @@ function Pills() {
                   </a>
                   <div className='dashboard-pill-item-description'>
                     <div className='dashboard-pill-item-inner'>
-                      <p>Title: keywords</p>
+                      <p>Medication {idx + 1} contents: </p>
                       {pill.longtext && (
                         <p className='dashboard-pill-item-text'>
                           {pill.longtext.substring(0, 250)}

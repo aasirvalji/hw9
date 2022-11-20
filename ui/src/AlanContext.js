@@ -14,6 +14,8 @@ function AlanProvider({ children }) {
   const [ready, setReady] = useState(false);
   const [pillData, setPillData] = useState(null);
   const [readPills, setReadPills] = useState(false);
+  const [pillsTaken, setPillsTaken] = useState(false);
+  const [takenPill, setTakenPill] = useState(false);
 
   useEffect(() => {
     alanBtnRef.btnInstance = alanBtn({
@@ -35,6 +37,12 @@ function AlanProvider({ children }) {
         }
         if (commandData.command === 'read-pills') {
           setReadPills(true);
+        }
+        if (commandData.command === 'take-pills') {
+          setPillsTaken(true);
+        }
+        if (commandData.command === 'post-pills') {
+          setTakenPill(true);
         }
       },
       onConnectionStatus: function (status) {
@@ -71,6 +79,10 @@ function AlanProvider({ children }) {
         setPillData,
         readPills,
         setReadPills,
+        pillsTaken,
+        setPillsTaken,
+        takenPill,
+        setTakenPill,
       }}
     >
       {children}
