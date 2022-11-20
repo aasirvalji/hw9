@@ -48,6 +48,10 @@ const apiPrefix = './api/routes';
 app.use('/api/auth', require(`${apiPrefix}/auth.js`));
 app.use('/api/pills', require(`${apiPrefix}/pills.js`));
 app.use('/api/aws', require(`${apiPrefix}/aws.js`));
+app.use('/api/amazon-search', require(`${apiPrefix}/amazon-search.js`))
+app.use('/api/appointment', require(`${apiPrefix}/appointments.js`));
+app.use('/api/doctors', require(`${apiPrefix}/doctors.js`));
+app.use('/api/patients', require(`${apiPrefix}/patients.js`));
 
 server.listen(PORT, () =>
   console.log(`Server running in ${nodeEnv} on port ${PORT}`.yellow.bold)

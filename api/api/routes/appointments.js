@@ -2,9 +2,9 @@ const express = require("express");
 const router = express.Router();
 
 const auth = require("./auth");
-const Appointment = require("./db/appointment");
-const Patient = require("./db/patient");
-const Doctor = require("./db/doctor");
+const Appointment = require("../../db/models/Appointment");
+const Patient = require("../../db/models/Patient");
+const Doctor = require("../../db/models/Doctor");
 
 // get all appointments
 router.get("/", auth, async (req, res) => {
@@ -88,12 +88,12 @@ const getUser = async req => {
     let user;
     if (req.user.type === "doctor") {
         user = await Doctor.findById({
-            id: req.user.id
+            _id: req.user.id
         });
     }
     else {
         user = await Patient.findById({
-            id: req.user.id
+            _id: req.user.id
         });
     }
     return user;
