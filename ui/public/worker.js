@@ -1,6 +1,7 @@
 function receivePushNotification(event) {
     console.log("[Service Worker] Push Received.");
   
+    console.log("e" + event.data.json());
     const { image, tag, url, title, text } = event.data.json();
   
     const options = {
@@ -10,7 +11,7 @@ function receivePushNotification(event) {
       vibrate: [200, 100, 200],
       tag: tag,
       image: image,
-      badge: "https://spyna.it/icons/favicon.ico",
+      // badge: "https://spyna.it/icons/favicon.ico",
       actions: [{ action: "Detail", title: "View", icon: "https://via.placeholder.com/128/ff0000" }]
     };
     event.waitUntil(self.registration.showNotification(title, options));

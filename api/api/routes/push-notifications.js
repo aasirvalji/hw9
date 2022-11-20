@@ -1,15 +1,13 @@
 const router = require('express').Router();
-const auth = require('../../utils/auth');
 const webpush = require('web-push');
 const NotificationSubscription = require("../../db/models/NotificationSubscription");
 
 const path = require("path");
 require('dotenv').config({ path: path.join(__dirname, '..', '..', '.env') });
 
-const publicKey = process.env.VAPID_PUB_KEY
-const privateKey = process.env.VAPID_PRV_KEY
-webpush.setVapidDetails('mailto:mattliuusa@hotmail.com', publicKey, privateKey);
-
+const publicKey = process.env.VAPID_PUB_KEY;
+const privateKey = process.env.VAPID_PRV_KEY;
+webpush.setVapidDetails('mailto:mattliu1728@gmail.com', publicKey, privateKey);
 
 router.post("/subscribe", async (req, res) => {
     const subscription = req.body;
@@ -31,8 +29,19 @@ router.get("/", async (req, res) => {
 const sendNotification = async () => {
     const subs = await NotificationSubscription.find({});
 
+    const options = {
+        title: "New Product Available",
+        body: "Take a look at this brand new t-shirt!",
+        icon: "https://www.w3schools.com/images/lamp.jpg",
+        vibrate: [200, 100, 200],
+        tag: "new-product",
+        image: "https://www.w3schools.com/images/lamp.jpg",
+        badge: "https://www.w3schools.com/images/lamp.jpg",
+        actions: [{ action: "Detail", title: "View", icon: "https://via.placeholder.com/128/ff0000" }]
+    };
+
     for (let sub of subs) {
-        const payload = JSON.stringify({ title: 'Please take your medication', message: "hello world" });
+        const payload = JSON.stringify(options)//{ title: "Test" }); // JSON.stringify(options);
         webpush.sendNotification(sub, payload);
     }
 }
