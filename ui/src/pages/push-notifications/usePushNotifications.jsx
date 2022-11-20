@@ -45,8 +45,7 @@ export default function usePushNotifications() {
   };
 
   const onClickSendSubscriptionToPushServer = async () => {
-    const res = await axios.post(`${BASE_URL}/api/notifications/subscribe`, userSubscription);
-    console.log(res);
+    await axios.post(`${BASE_URL}/api/notifications/subscribe`, userSubscription);
   };
 
   const onClickSendNotification = async () => {
@@ -58,15 +57,15 @@ export default function usePushNotifications() {
     const base64 = (base64String + padding)
       .replace(/\-/g, "+")
       .replace(/_/g, "/");
-  
+
     const rawData = window.atob(base64);
     const outputArray = new Uint8Array(rawData.length);
-  
+
     for (let i = 0; i < rawData.length; ++i) {
       outputArray[i] = rawData.charCodeAt(i);
     }
     return outputArray;
-}    
+  }
 
   return {
     askUserPermission,
