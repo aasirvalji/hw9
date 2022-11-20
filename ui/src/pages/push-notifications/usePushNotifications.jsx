@@ -6,7 +6,6 @@ const BASE_URL = CONSTS.BASE_URL;
 const publicVapidKey = "BFhZAN-nNturTa7ptaq5iR5hynPjKn5snJk6ZuSl0dcnURXiebicm6nhg7f-mnYdh5g4HfBbJuTusW6OLQ05mwY";
 
 export default function usePushNotifications() {
-  const [userConsent, setSuserConsent] = useState(Notification.permission);
   const [userSubscription, setUserSubscription] = useState(null);
   const [register, setRegister] = useState(null);
 
@@ -36,11 +35,13 @@ export default function usePushNotifications() {
       applicationServerKey: urlBase64ToUint8Array(publicVapidKey)
     });
     setUserSubscription(subscription);
-    return await subscribeToServer();
+    return await subscribeToServer(subscription);
   };
 
-  const subscribeToServer = async () => {
-    return await axios.post(`${BASE_URL}/api/notifications/subscribe`, userSubscription);
+  const subscribeToServer = async (sub) => {
+    const res = await axios.post(`${BASE_URL}/api/notifications/subscribe`, sub);
+    console.log(res.data);
+    return;
   };
 
   const onClickSendNotification = async () => {
@@ -65,7 +66,6 @@ export default function usePushNotifications() {
   return {
     subscribeToPushNotification,
     onClickSendNotification,
-    userConsent,
     userSubscription,
   };
 }
