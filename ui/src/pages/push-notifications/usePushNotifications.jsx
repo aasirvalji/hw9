@@ -30,11 +30,6 @@ export default function usePushNotifications() {
     getExixtingSubscription();
   }, []);
 
-  const askUserPermission = async () => {
-    const consent = await Notification.requestPermission();
-    setSuserConsent(consent);
-  };
-
   const subscribeToPushNotification = async () => {
     const subscription = await register.pushManager.subscribe({
       userVisibleOnly: true,
@@ -68,7 +63,6 @@ export default function usePushNotifications() {
   }
 
   return {
-    askUserPermission,
     subscribeToPushNotification,
     onClickSendSubscriptionToPushServer,
     onClickSendNotification,
