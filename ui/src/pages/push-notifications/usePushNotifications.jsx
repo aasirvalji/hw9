@@ -21,13 +21,13 @@ export default function usePushNotifications() {
   }, []);
 
   useEffect(() => {
-    const getExixtingSubscription = async () => {
+    const getExistingSubscription = async () => {
       const worker = await navigator.serviceWorker.ready
       const existingSubscription = await worker.pushManager.getSubscription();
 
       setUserSubscription(existingSubscription);
     };
-    getExixtingSubscription();
+    getExistingSubscription();
   }, []);
 
   const subscribeToPushNotification = async () => {
@@ -35,12 +35,12 @@ export default function usePushNotifications() {
       userVisibleOnly: true,
       applicationServerKey: urlBase64ToUint8Array(publicVapidKey)
     });
-
     setUserSubscription(subscription);
+    return await subscribeToServer();
   };
 
-  const onClickSendSubscriptionToPushServer = async () => {
-    await axios.post(`${BASE_URL}/api/notifications/subscribe`, userSubscription);
+  const subscribeToServer = async () => {
+    return await axios.post(`${BASE_URL}/api/notifications/subscribe`, userSubscription);
   };
 
   const onClickSendNotification = async () => {
@@ -64,7 +64,6 @@ export default function usePushNotifications() {
 
   return {
     subscribeToPushNotification,
-    onClickSendSubscriptionToPushServer,
     onClickSendNotification,
     userConsent,
     userSubscription,
