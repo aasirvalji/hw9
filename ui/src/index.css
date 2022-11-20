@@ -43,10 +43,17 @@ a {
   transition: all 0.3s ease;
 }
 
+.button:hover {
+  background: #00dbde;
+  background: -webkit-linear-gradient(to right, #833ab4, #00dbde);
+  background: linear-gradient(to right, #833ab4, #00dbde);
+}
+
 .home-container,
 .about-container,
 .register-container,
 .login-container {
+  padding: 1rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -56,6 +63,7 @@ a {
 .gradient-text {
   color: red;
 }
+
 /* gradient text for modern browsers */
 @supports (background-clip: text) {
   .gradient-text {
@@ -64,6 +72,7 @@ a {
     color: transparent;
   }
 }
+
 /* end general */
 
 /* start navbar */
@@ -120,12 +129,18 @@ a {
   height: 80px;
 }
 
+.navbar__item:hover {
+  background-image: linear-gradient(90deg, #ff1493, #ff8c00);
+}
+
+
 .navbar__links {
+  font-size: 1.5rem;
   color: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100px;
+  width: 175px;
   text-decoration: none;
   height: 100%;
   transition: all 0.3s ease;
@@ -144,6 +159,7 @@ a {
   outline: none;
   color: white;
 }
+
 /* end navbar */
 
 /* start login and register */
@@ -152,7 +168,7 @@ a {
   height: calc(100vh - 50px);
 
   background: #000000;
-  background: linear-gradient(to right, #161616, #000000);
+  background: linear-gradient(to right, #161616, #ff8c00);
 }
 
 .register-container,
@@ -164,21 +180,22 @@ a {
 
 .register-content-container,
 .login-content-container {
-  min-height: 300px;
-  padding: 2rem;
-  border-radius: 2px;
-  border: 1px solid rgba(0, 0, 0, 0.15);
+  min-height: 400px;
+  padding: 5rem;
+  border-radius: 15px;
+  border: 5px solid rgba(0, 0, 0, 0.15);
   background-color: white;
 }
 
 .register-text,
 .login-text {
-  font-size: 1.5rem;
+  font-size: 1.75rem;
+  padding-bottom: 2rem;
 }
 
 .register-subtext,
 .login-subtext {
-  font-size: 0.8rem;
+  font-size: 1rem;
 }
 
 .register-subtext a,
@@ -202,7 +219,7 @@ a {
 .login-input-username,
 .login-input-password,
 .login-input-confirm-password {
-  font-size: 0.7rem;
+  font-size: 1rem;
   margin: 0.25rem 0rem;
 }
 
@@ -216,33 +233,62 @@ a {
 
 .register-button,
 .login-button {
+  font-size: 1rem;
   outline: none;
   border: none;
   background-image: linear-gradient(90deg, #ff1493, #ff8c00);
   color: white;
-  border-radius: 3px;
-  padding: 0.2rem;
+  border-radius: 18px;
+  padding: 1rem;
   margin: 0.5rem 0rem 0.25rem 0rem;
 }
+
+.login-button:hover {
+  cursor: pointer;
+  background-image: linear-gradient(90deg, #833ab4, #00dbde);
+}
+
 /* end login and register */
 
 /* start pills */
+.background {
+  margin: 0 auto;
+  padding-top: 100px;
+  background-color: #000000;
+}
+
 .dashboard-container {
-  width: 90%;
-  margin: 3rem auto;
+  background-color: #161616;
+  width: 85%;
+  margin: 0 auto;
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
 }
 
+.dashboard-container p {}
+
 .dashboard-pills {
+  padding: 2.5rem;
+  background-color: 161616;
+}
+
+.dashboard-pills p {
+  font-size: 1.5em;
 }
 
 .dashboard-pill-item {
-  box-shadow: 0 19px 38px rgba(0, 0, 0, 0.1), 0 15px 12px rgba(0, 0, 0, 0.11);
-  max-width: 50%;
-  padding: 1rem;
+  background-image: linear-gradient(90deg, white, #a5d4d1, white);
+  border-radius: 10px;
+  box-shadow: 0 19px 38px rgba(131, 58, 180, 0.5), 0 15px 12px rgba(255, 255, 255, 0.11);
+  max-width: 55%;
+  padding: 1.5rem;
   margin: 2rem 0rem;
+}
+
+.dashboard-pill-item:hover {
+  background-image: linear-gradient(90deg, #ff8c00, #a5d4d1);
+  background-color: #ff8c00;
 }
 
 .dashboard-pill-item-title {
@@ -296,8 +342,11 @@ a {
 .dashboard-add-pill,
 .webcam-prompt-dashboard,
 .webcam-meeting-invite {
+  font-size: 1.25rem;
+  width: 250px;
+  background-color: white;
   padding: 1.5rem;
-  border-radius: 4px;
+  border-radius: 15px;
   border: 1px solid rgba(0, 0, 0, 0.15);
 }
 
@@ -346,11 +395,19 @@ a {
 }
 
 .pills-sidebar {
-  display: flex;
+  margin-right: 7.5%;
+  padding: 1.75rem;
+  background-image: linear-gradient(90deg, #f381da, #a5d4d1);
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  z-index: 1000;
+  /* display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
+  flex-direction: column; */
 }
+
 /* end pills */
 
 /* start webcam */
@@ -364,20 +421,28 @@ a {
   width: 100%;
   box-shadow: 0 19px 38px rgba(0, 0, 0, 0.1), 0 15px 12px rgba(0, 0, 0, 0.055);
 }
+
 /* end webcam */
 
 /* start modal */
 /* The Modal (background) */
 .modal {
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
+  position: fixed;
+  /* Stay in place */
+  z-index: 1;
+  /* Sit on top */
   left: 0;
   top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0, 0, 0); /* Fallback color */
-  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+  width: 100%;
+  /* Full width */
+  height: 100%;
+  /* Full height */
+  overflow: auto;
+  /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0);
+  /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4);
+  /* Black w/ opacity */
 }
 
 /* Modal Content/Box */
@@ -386,9 +451,11 @@ a {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 15% auto; /* 15% from the top and centered */
+  margin: 15% auto;
+  /* 15% from the top and centered */
   padding: 20px;
-  width: 80%; /* Could be more or less, depending on screen size */
+  width: 80%;
+  /* Could be more or less, depending on screen size */
   border-radius: 5px;
   box-shadow: 0 19px 38px rgba(0, 0, 0, 0.1), 0 15px 12px rgba(0, 0, 0, 0.055);
 }
@@ -407,6 +474,7 @@ a {
   text-decoration: none;
   cursor: pointer;
 }
+
 /* end modal */
 
 /* start video call stuff */
@@ -456,6 +524,7 @@ a {
 #call-start-prompt button {
   width: 120px;
 }
+
 /* end video call stuff */
 
 /* start notifications */

@@ -6,6 +6,7 @@ import Upload from '../components/Upload';
 import { Link } from 'react-router-dom';
 import { AlanContext } from '../AlanContext';
 import nums from '../utils/nums.json';
+import "../styles/pills.css";
 
 const BASE_URL = CONSTS.BASE_URL;
 
@@ -54,47 +55,47 @@ function Pills() {
   }, [readPills, setReadPills, alanBtnRef.btnInstance]);
 
   return (
-    <div className='dashboard-container'>
-      <div className='dashboard-pills'>
-        {Array.isArray(pills) && <h1>Past medications: </h1>}
-        {loading || !Array.isArray(pills) ? (
-          <Loader />
-        ) : (
-          pills.map((pill, idx) => {
-            return (
-              <div
-                className={
-                  pills && pills.length > 1
-                    ? 'dashboard-pill-item mb-custom'
-                    : 'dashboard-pill-item'
-                }
-                key={idx}
-              >
-                <div className='dashboard-pill-item-header'>
-                  <p className='dashboard-pill-item-date'>
-                    Uploaded: {new Date(pill.created).toLocaleString()}
-                  </p>
-                </div>
-                <div className='dashboard-pill-item-content'>
-                  <a href={pill.url} target='_blank' rel='noopener noreferrer'>
-                    <img
-                      className='dashboard-pill-item-image'
-                      src={pill.url}
-                      alt='pill'
-                    />
-                  </a>
-                  <div className='dashboard-pill-item-description'>
-                    <div className='dashboard-pill-item-inner'>
-                      <p>Medication {idx + 1} contents: </p>
-                      {pill.longtext && (
-                        <p className='dashboard-pill-item-text'>
-                          {pill.longtext.substring(0, 250)}
-                        </p>
-                      )}
-                    </div>
+    <div className='background'>
+      <div className='dashboard-container'>
+        <div className='dashboard-pills'>
+          {loading || !Array.isArray(pills) ? (
+            <Loader />
+          ) : (
+            pills.map((pill, idx) => {
+              return (
+                <div
+                  className={
+                    pills && pills.length > 1
+                      ? 'dashboard-pill-item mb-custom'
+                      : 'dashboard-pill-item'
+                  }
+                  key={idx}
+                >
+                  <div className='dashboard-pill-item-header'>
+                    <p className='dashboard-pill-item-date'>
+                      Uploaded: {new Date(pill.created).toLocaleString()}
+                    </p>
+                  </div>
+                  <div className='dashboard-pill-item-content'>
+                    <a href={pill.url} target='_blank' rel='noopener noreferrer'>
+                      <img
+                        className='dashboard-pill-item-image'
+                        src={pill.url}
+                        alt='pill'
+                      />
+                    </a>
+                    <div className='dashboard-pill-item-description'>
+                      <div className='dashboard-pill-item-inner'>
+                        <p>Title: keywords</p>
+                        {pill.longtext && (
+                          <p className='dashboard-pill-item-text'>
+                            {pill.longtext.substring(0, 250)}
+                          </p>
+                        )}
+                      </div>
 
-                    <div className='dashboard-pill-item-buttons'>
-                      {/* <button
+                      <div className='dashboard-pill-item-buttons'>
+                        {/* <button
                         className='button'
                         onClick={() =>
                           alanBtnRef.btnInstance.playText('big boy daddy')
@@ -102,35 +103,36 @@ function Pills() {
                       >
                         <i class='fa-solid fa-play'></i>
                       </button> */}
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            );
-          })
-        )}
-      </div>
-      <div className='pills-sidebar'>
-        <Upload setPills={setPills} />
-        <div className='webcam-prompt-dashboard'>
-          <p className='gradient-text'>Dont have any pictures yet?</p>
-          <br />
-          <Link to='/webcam'>
-            <button className='webcam-prompt-button button'>
-              <i class='fa-solid fa-camera'></i>
-            </button>
-          </Link>
+              );
+            })
+          )}
         </div>
-        <div className='webcam-meeting-invite'>
-          <p className='gradient-text'>
-            Want to get in touch with your doctor?
-          </p>
-          <br />
-          <Link to='/appointment' target='_blank' rel='noopener noreferrer'>
-            <button className='webcam-prompt-button button'>
-              <i class='fa-solid fa-video'></i>
-            </button>
-          </Link>
+        <div className='pills-sidebar'>
+          <Upload setPills={setPills} />
+          <div className='webcam-prompt-dashboard'>
+            <p className='gradient-text'>Dont have any pictures yet?</p>
+            <br />
+            <Link to='/webcam'>
+              <button className='webcam-prompt-button button'>
+                <i class='fa-solid fa-camera'></i>
+              </button>
+            </Link>
+          </div>
+          <div className='webcam-meeting-invite'>
+            <p className='gradient-text'>
+              Want to get in touch with your doctor?
+            </p>
+            <br />
+            <Link to='/appointment' target='_blank' rel='noopener noreferrer'>
+              <button className='webcam-prompt-button button'>
+                <i class='fa-solid fa-video'></i>
+              </button>
+            </Link>
+          </div>
         </div>
       </div>
     </div>
