@@ -3,6 +3,7 @@ import alanBtn from '@alan-ai/alan-sdk-web';
 import invalidAlanPaths from './utils/invalidAlanPaths.json';
 import { useNavigate } from 'react-router-dom';
 import validAppPaths from './utils/validAppPaths.json';
+import nums from './utils/nums.json';
 
 const AlanContext = createContext();
 
@@ -12,6 +13,7 @@ function AlanProvider({ children }) {
   const [connection, setConnection] = useState('temp');
   const [ready, setReady] = useState(false);
   const [pillData, setPillData] = useState(null);
+  const [readPills, setReadPills] = useState(false);
 
   useEffect(() => {
     alanBtnRef.btnInstance = alanBtn({
@@ -25,8 +27,14 @@ function AlanProvider({ children }) {
           window.open('http://localhost:3000/appointment', '_blank');
         }
         if (commandData.command === 'read-pill') {
-          console.log(commandData);
-          setPillData(commandData.num);
+          var regExp = /[a-zA-Z]/g;
+          var num = regExp.test(commandData.num)
+            ? nums[commandData.num]
+            : Number(commandData.num);
+          setPillData(num);
+        }
+        if (commandData.command === 'read-pills') {
+          setReadPills(true);
         }
       },
       onConnectionStatus: function (status) {
@@ -61,6 +69,8 @@ function AlanProvider({ children }) {
         checkAlanVisibility,
         pillData,
         setPillData,
+        readPills,
+        setReadPills,
       }}
     >
       {children}
