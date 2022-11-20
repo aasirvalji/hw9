@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 
 import { SocketContext } from '../SocketContext';
@@ -8,8 +8,15 @@ const Sidebar = ({ children }) => {
     useContext(SocketContext);
   const [idToCall, setIdToCall] = useState('');
 
+  useEffect(() => {
+    const search = window.location.search; // could be '?foo=bar'
+    const params = new URLSearchParams(search);
+    setIdToCall(params.get('call') ? params.get('call') : '');
+    if (idToCall) callUser(idToCall);
+  }, [callUser, idToCall]);
+
   return (
-    <form>
+    <div className='sidebar-buttons'>
       {callAccepted && !callEnded ? (
         <button
           type='button'
@@ -20,7 +27,7 @@ const Sidebar = ({ children }) => {
           Hang Up
         </button>
       ) : (
-        <CopyToClipboard text={`http://localhost:5000/${me}`}>
+        <CopyToClipboard text={`http://localhost:3000/appointment?call=${me}`}>
           <button className='button'>
             Copy your meeting invite: <i class='fa-solid fa-clipboard'></i>
           </button>
@@ -35,7 +42,7 @@ const Sidebar = ({ children }) => {
         // </button>
       )}
       {children}
-    </form>
+    </div>
   );
 };
 
