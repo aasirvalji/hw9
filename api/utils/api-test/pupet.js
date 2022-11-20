@@ -4,13 +4,12 @@ const puppeteer = require('puppeteer');
  * returns top 3 urls from amazon.ca based on a text input
  * @param {String} textInput
  */
-const getAmazonResults = async (textInput) => {
-  const browser = await puppeteer.launch();
+(async () => {
+  var textInput = 'gummy vitamins';
+  const browser = await puppeteer.launch({ headless: false });
   const page = await browser.newPage();
-  //   page.on('console', (msg) => console.log(msg.text())); // uncomment for NodeJS debugging
-  console.log('before');
+
   await page.goto('https://www.amazon.ca');
-  await delay(500);
 
   // Type into search box.
   const searchBarSelector = '.nav-input';
@@ -40,15 +39,5 @@ const getAmazonResults = async (textInput) => {
       }); // get href element
   });
   await browser.close();
-  return links.slice(0, 3);
-};
-
-function delay(time) {
-  return new Promise(function (resolve) {
-    setTimeout(resolve, time);
-  });
-}
-
-module.exports = {
-  getAmazonResults,
-};
+  console.log(links.slice(0, 3));
+})();
