@@ -44,10 +44,11 @@ function Pills() {
         var { longtext } = pills[i];
         alanBtnRef.btnInstance.playText(`Reading pill ${i + 1}`);
         alanBtnRef.btnInstance.playText(`The prescription is: ${longtext}`);
-        if (i === pills.length - 1)
+        if (i === pills.length - 1) {
           alanBtnRef.btnInstance.playText(
             `Stopping reading, no more pills to read.`
           );
+        }
       }
     }
   }, [readPills, setReadPills, alanBtnRef.btnInstance]);
