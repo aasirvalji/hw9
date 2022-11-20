@@ -85,7 +85,7 @@ function Pills() {
           })
         )}
       </div>
-      <div className='picture-wrapper'>
+      <div className='pills-sidebar'>
         <Upload setPills={setPills} hello={hello} />
         <div className='webcam-prompt-dashboard'>
           <p className='gradient-text'>Dont have any pictures yet?</p>
@@ -93,6 +93,17 @@ function Pills() {
           <Link to='/webcam'>
             <button className='webcam-prompt-button button'>
               <i class='fa-solid fa-camera'></i>
+            </button>
+          </Link>
+        </div>
+        <div className='webcam-meeting-invite'>
+          <p className='gradient-text'>
+            Want to get in touch with your doctor?
+          </p>
+          <br />
+          <Link to='/appointment' target='_blank' rel='noopener noreferrer'>
+            <button className='webcam-prompt-button button'>
+              <i class='fa-solid fa-video'></i>
             </button>
           </Link>
         </div>

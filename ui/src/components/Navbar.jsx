@@ -48,11 +48,6 @@ function Navbar() {
                 Order
               </Link>
             </li>
-            <li class='navbar__item'>
-              <Link to='/appointment' className='navbar__links'>
-                Appointment
-              </Link>
-            </li>
           </ul>
         )}
       </div>
