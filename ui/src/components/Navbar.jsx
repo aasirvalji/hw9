@@ -44,8 +44,8 @@ function Navbar() {
               </Link>
             </li>
             <li class='navbar__item'>
-              <Link to='/order' className='navbar__links'>
-                Order
+              <Link to='/Notifications' className='navbar__links'>
+                Notifications
               </Link>
             </li>
           </ul>

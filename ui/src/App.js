@@ -6,7 +6,7 @@ import PatientRegister from './pages/PatientRegister';
 import DoctorLogin from './pages/DoctorLogin';
 import DoctorRegister from './pages/DoctorRegister';
 import Pills from './pages/Pills';
-import Order from './pages/Order';
+import Notifications from './pages/Notifications';
 import Appointment from './pages/Appointment';
 import Navbar from './components/Navbar';
 import Webcam from './pages/Webcam';
@@ -62,6 +62,8 @@ function App() {
         <Route path='/pills' element={<Pills />} />
         <Route path='/order' element={<Order />} />
 
+
+        <Route path='/notifications' element={<Notifications />} />
         <Route path='/appointment' element={<Appointment />} />
       </Routes>
     </>
