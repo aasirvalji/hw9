@@ -408,3 +408,52 @@ a {
   cursor: pointer;
 }
 /* end modal */
+
+/* start video call stuff */
+.sidebar-buttons {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 300px;
+  margin: auto;
+}
+
+.video-streams-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 80vw;
+  margin: 2rem auto;
+}
+
+#you-player,
+#other-player {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+#you-player video,
+#other-player video {
+  width: 90%;
+  margin: 0rem 2rem;
+}
+
+.video-streams-container video {
+  box-shadow: 0 19px 38px rgba(0, 0, 0, 0.1), 0 15px 12px rgba(0, 0, 0, 0.11);
+}
+
+#call-start-prompt {
+  display: flex;
+}
+
+#call-start-prompt {
+  font-size: 0.9rem;
+  margin-top: 1rem;
+}
+
+#call-start-prompt button {
+  width: 120px;
+}
+/* end video call stuff */

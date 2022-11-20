@@ -8,9 +8,12 @@ const Notifications = () => {
   return (
     <>
       {call.isReceivingCall && !callAccepted && (
-        <div style={{ display: 'flex', justifyContent: 'space-around' }}>
-          <h1>{call.name} is calling:</h1>
-          <button type='button' onClick={answerCall}>
+        <div id='call-start-prompt'>
+          <p>
+            You have an incoming call from an {''}
+            <span className='gradient-text'>attendee</span>
+          </p>
+          <button type='button' className='button' onClick={answerCall}>
             Answer
           </button>
         </div>

@@ -9,7 +9,7 @@ import { AlanContext } from '../AlanContext';
 const BASE_URL = CONSTS.BASE_URL;
 
 function Pills() {
-  const { alanBtnRef } = useContext(AlanContext);
+  const { alanBtnRef, pillData, setPillData } = useContext(AlanContext);
 
   const [loading, setLoading] = useState(false);
   const [pills, setPills] = useState(null);
@@ -25,9 +25,13 @@ function Pills() {
     getPills();
   }, []);
 
-  function hello() {
-    console.log('hello from parent function');
-  }
+  useEffect(() => {
+    console.log(pillData);
+    if (pillData && pillData >= 1 && pillData < pills.length) {
+      alanBtnRef.btnInstance.playText('hey daddy');
+      setPillData(null);
+    }
+  }, [pillData, setPillData, alanBtnRef.btnInstance, pills]);
 
   return (
     <div className='dashboard-container'>
@@ -86,7 +90,7 @@ function Pills() {
         )}
       </div>
       <div className='pills-sidebar'>
-        <Upload setPills={setPills} hello={hello} />
+        <Upload setPills={setPills} />
         <div className='webcam-prompt-dashboard'>
           <p className='gradient-text'>Dont have any pictures yet?</p>
           <br />

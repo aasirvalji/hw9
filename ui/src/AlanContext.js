@@ -11,6 +11,7 @@ function AlanProvider({ children }) {
   const alanBtnRef = useRef({}).current;
   const [connection, setConnection] = useState('temp');
   const [ready, setReady] = useState(false);
+  const [pillData, setPillData] = useState(null);
 
   useEffect(() => {
     alanBtnRef.btnInstance = alanBtn({
@@ -18,7 +19,14 @@ function AlanProvider({ children }) {
       onCommand: (commandData) => {
         if (commandData.command === 'navigation') {
           navigate(`/${commandData.route}`, { replace: true });
-          // Call the client code that will react to the received command
+        }
+        if (commandData.command === 'new-navigation') {
+          console.log('from alan new window');
+          window.open('http://localhost:3000/appointment', '_blank');
+        }
+        if (commandData.command === 'read-pill') {
+          console.log(commandData);
+          setPillData(commandData.num);
         }
       },
       onConnectionStatus: function (status) {
@@ -51,6 +59,8 @@ function AlanProvider({ children }) {
         connection,
         ready,
         checkAlanVisibility,
+        pillData,
+        setPillData,
       }}
     >
       {children}
