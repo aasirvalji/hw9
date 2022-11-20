@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const auth = require('../../utils/auth');
 const webpush = require('web-push');
+const NotificationSubscription = require("../../db/models/NotificationSubscription");
 
 const path = require("path");
 require('dotenv').config({ path: path.join(__dirname, '..', '..', '.env') });
@@ -10,18 +11,30 @@ const privateKey = process.env.VAPID_PRV_KEY
 webpush.setVapidDetails('mailto:mattliuusa@hotmail.com', publicKey, privateKey);
 
 
-router.post("/subscribe", (req, res) => {
+router.post("/subscribe", async (req, res) => {
     const subscription = req.body;
 
-    //send status 201 for the request
-    res.status(201).json({})
+    // find existing
+    const existingSub = await NotificationSubscription.findOne(subscription);
+    if (existingSub) return res.status(200).json({ message: "Already subscribed." });
 
-    //create paylod: specified the detals of the push notification
-    const payload = JSON.stringify({ title: 'Section.io Push Notification' });
+    // create new one
+    await NotificationSubscription.create(subscription);
+    return res.status(200).json({ message: "Subscribed to notifications." });
+});
 
-    //pass the object into sendNotification fucntion and catch any error
-    webpush.sendNotification(subscription, payload).catch(err => console.error(err));
-    console.log(subscription);
+router.get("/", async (req, res) => {
+    sendNotification();
+    res.status(200).json({ message: "Notifications sent." })
 })
+
+const sendNotification = async () => {
+    const subs = await NotificationSubscription.find({});
+
+    for (let sub of subs) {
+        const payload = JSON.stringify({ title: 'Please take your medication', message: "hello world" });
+        webpush.sendNotification(sub, payload);
+    }
+}
 
 module.exports = router;
