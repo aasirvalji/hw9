@@ -10,8 +10,6 @@ export default function PushNotifications() {
     onClickSendNotification,
   } = usePushNotifications();
 
-  // const {sendNotification} = pushNot();
-
   return (
     <main>
 
