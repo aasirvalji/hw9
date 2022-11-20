@@ -85,6 +85,10 @@ router.post('/contract', async (req, res) => {
 
   // send notification to client here
 
+  // run pup here to get products
+
+  // text user the response
+
   return res.status(200).json({ hello: 'world' });
 });
 

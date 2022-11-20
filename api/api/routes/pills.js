@@ -6,6 +6,9 @@ const Patient = require('../../db/models/Patient');
 const Pill = require('../../db/models/Pill');
 const tesseract = require('node-tesseract-ocr');
 const cohere = require('cohere-ai');
+const { getAmazonResults } = require('../../puppeteer');
+const { notifyRelative } = require('../../twilio');
+const defaultData = require('../../utils/data/default.json');
 
 cohere.init(process.env.COHERE_API_KEY);
 
@@ -51,6 +54,25 @@ router.post('/create/:id', auth, async (req, res) => {
   pill = await pill.save();
   console.log('from server: ' + pill);
 
+  var user = await Patient.findById(req.user.id);
+
+  if (!user)
+    return res.status(404).json({ message: 'Unable to find patient profile' });
+
+  console.log('Username: ' + user.fullName + 'and: ' + pill.longtext.trim());
+  // console.log(1);
+  var amazonResults = [];
+  // console.log(amazonResults);
+  var amazonResults = await getAmazonResults(pill.longtext.trim());
+  amazonResults = amazonResults.length === 0 ? ['L + ratio'] : amazonResults;
+  console.log(amazonResults);
+  const message = `\n\n${user.fullName} has requested ${
+    pill.longtext
+  }: \n\n${amazonResults.join('\n\n')}`;
+  // console.log(3);
+  // send twilio message
+  notifyRelative(message);
+  // console.log(4);
   return res.status(200).json(pill);
 });
 

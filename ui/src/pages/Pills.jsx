@@ -5,11 +5,13 @@ import Loader from '../components/Loader';
 import Upload from '../components/Upload';
 import { Link } from 'react-router-dom';
 import { AlanContext } from '../AlanContext';
+import nums from '../utils/nums.json';
 
 const BASE_URL = CONSTS.BASE_URL;
 
 function Pills() {
-  const { alanBtnRef, pillData, setPillData } = useContext(AlanContext);
+  const { alanBtnRef, pillData, setPillData, readPills, setReadPills } =
+    useContext(AlanContext);
 
   const [loading, setLoading] = useState(false);
   const [pills, setPills] = useState(null);
@@ -26,12 +28,30 @@ function Pills() {
   }, []);
 
   useEffect(() => {
-    console.log(pillData);
     if (pillData && pillData >= 1 && pillData < pills.length) {
-      alanBtnRef.btnInstance.playText('hey daddy');
-      setPillData(null);
+      var pillIndex = pillData - 1;
+      // may need window refresh due to alan state
+      alanBtnRef.btnInstance.playText(`Reading pill ${pillData}`);
+      alanBtnRef.btnInstance.playText(
+        `The prescription is: ${pills[pillIndex].longtext}`
+      );
     }
   }, [pillData, setPillData, alanBtnRef.btnInstance, pills]);
+
+  useEffect(() => {
+    if (readPills === true) {
+      for (var i = 0; i < pills.length; i++) {
+        var { longtext } = pills[i];
+        alanBtnRef.btnInstance.playText(`Reading pill ${i + 1}`);
+        alanBtnRef.btnInstance.playText(`The prescription is: ${longtext}`);
+        if (i === pills.length - 1) {
+          alanBtnRef.btnInstance.playText(
+            `Stopping reading, no more pills to read.`
+          );
+        }
+      }
+    }
+  }, [readPills, setReadPills, alanBtnRef.btnInstance]);
 
   return (
     <div className='dashboard-container'>
@@ -73,14 +93,14 @@ function Pills() {
                     </div>
 
                     <div className='dashboard-pill-item-buttons'>
-                      <button
+                      {/* <button
                         className='button'
                         onClick={() =>
                           alanBtnRef.btnInstance.playText('big boy daddy')
                         }
                       >
                         <i class='fa-solid fa-play'></i>
-                      </button>
+                      </button> */}
                     </div>
                   </div>
                 </div>
