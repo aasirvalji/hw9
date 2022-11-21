@@ -70,11 +70,11 @@ export default function PushNotifications() {
     }
   }, [takenPill, setTakenPill, alanBtnRef.btnInstance]);
 
-  useEffect(() => {
-    setTimeout(() => {
-      setShowAlert(true);
-    }, 2000);
-  }, []);
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     setShowAlert(true);
+  //   }, 20000);
+  // }, []);
 
   // ask alan ai when next time is, how many taken so far, if i still needto take any, read text stuff from screen, demo with api call here
 

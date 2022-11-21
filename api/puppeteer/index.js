@@ -10,7 +10,7 @@ const getAmazonResults = async (textInput) => {
   //   page.on('console', (msg) => console.log(msg.text())); // uncomment for NodeJS debugging
   console.log('before');
   await page.goto('https://www.amazon.ca');
-  await delay(500);
+  await delay(1100);
 
   // Type into search box.
   const searchBarSelector = '.nav-input';

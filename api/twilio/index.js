@@ -9,7 +9,7 @@ const notifyRelative = (message) => {
   client.messages.create({
     body: message,
     from: '+18655688025',
-    to: '+16479867448',
+    to: '+15199651728',
   });
   // .then(message => console.log(message.sid));
 };

@@ -384,6 +384,7 @@ a {
 .modal-content {
   background-color: #ffffff;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   margin: 15% auto; /* 15% from the top and centered */
@@ -391,6 +392,11 @@ a {
   width: 80%; /* Could be more or less, depending on screen size */
   border-radius: 5px;
   box-shadow: 0 19px 38px rgba(0, 0, 0, 0.1), 0 15px 12px rgba(0, 0, 0, 0.055);
+}
+
+.modal-content img {
+  margin: 24px;
+  width: 75px;
 }
 
 /* The Close Button */

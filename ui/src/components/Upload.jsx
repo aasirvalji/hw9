@@ -8,6 +8,7 @@ const baseUrl = 'http://localhost:5000';
 function Upload({ setPills, pills }) {
   const inputRef = useRef();
   const [loading, setLoading] = useState(false);
+  const [show, setShow] = useState(false);
 
   async function handleUpload(e) {
     setLoading(true);
@@ -57,7 +58,12 @@ function Upload({ setPills, pills }) {
         // set completion request to db here
         res = await axios.post(`${baseUrl}/api/pills/create/${id}`);
         setPills((prev) => [res.data, ...prev]);
+        setShow(true);
         setLoading(false);
+
+        setTimeout(() => {
+          setShow(false);
+        }, 3000);
       })
       .catch((err) => {
         alert(err);
@@ -92,6 +98,22 @@ function Upload({ setPills, pills }) {
         <button className='upload-button button' onClick={handleUpload}>
           Upload
         </button>
+      )}
+      {show && (
+        <div id='myModal' class='modal'>
+          <div class='modal-content'>
+            <img
+              src={
+                'https://media.tenor.com/0AVbKGY_MxMAAAAM/check-mark-verified.gif'
+              }
+              alt='check'
+            />
+            <span className='gradient-text'>
+              Hey, your guardian received your request. We'll let you know once
+              the order has been fulfilled
+            </span>
+          </div>
+        </div>
       )}
     </div>
   );

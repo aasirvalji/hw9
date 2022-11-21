@@ -34,13 +34,15 @@ const sendNotification = async () => {
   const subs = await NotificationSubscription.find({});
 
   const options = {
-    title: 'New Product Available',
-    body: 'Take a look at this brand new t-shirt!',
-    icon: 'https://www.w3schools.com/images/lamp.jpg',
+    title: 'Medication time',
+    body: 'Make sure to take your medication',
+    icon: 'https://media.istockphoto.com/id/859901818/vector/pill-icon-flat.jpg?s=612x612&w=0&k=20&c=KjfXKGhbJM9LU67f8d90qiKRQIUuwN9c00kSNp2ONWc=',
     vibrate: [200, 100, 200],
     tag: 'new-product',
-    image: 'https://www.w3schools.com/images/lamp.jpg',
-    badge: 'https://www.w3schools.com/images/lamp.jpg',
+    image:
+      'https://media.istockphoto.com/id/859901818/vector/pill-icon-flat.jpg?s=612x612&w=0&k=20&c=KjfXKGhbJM9LU67f8d90qiKRQIUuwN9c00kSNp2ONWc=',
+    badge:
+      'https://media.istockphoto.com/id/859901818/vector/pill-icon-flat.jpg?s=612x612&w=0&k=20&c=KjfXKGhbJM9LU67f8d90qiKRQIUuwN9c00kSNp2ONWc=',
     actions: [
       {
         action: 'Detail',

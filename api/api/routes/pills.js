@@ -64,7 +64,8 @@ router.post('/create/:id', auth, async (req, res) => {
   var amazonResults = [];
   // console.log(amazonResults);
   var amazonResults = await getAmazonResults(pill.longtext.trim());
-  amazonResults = amazonResults.length === 0 ? ['L + ratio'] : amazonResults;
+  console.log(amazonResults);
+  amazonResults = defaultData;
   console.log(amazonResults);
   const message = `\n\n${user.fullName} has requested ${
     pill.longtext

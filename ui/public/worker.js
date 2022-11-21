@@ -21,7 +21,6 @@ function receivePushNotification(event) {
     ],
   };
 
-  new Audio('/').play('/alert_trim.mp3');
   event.waitUntil(self.registration.showNotification(title, options));
 }
 
